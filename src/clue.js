@@ -96,24 +96,16 @@ const weaponsArray = [
 
 // ITERATION 2
 
-function selectRandom(deck) {
-  let shuffle = deck.sort(() => Math.random() - 0.5)
-  return shuffle[0]
-}
+function selectRandom(arr) {
+  return arr[Math.floor(Math.random()*arr.length)];
+};
 
 function pickMystery() { 
-  let mystery = {suspect: '', weapon: '', room: ''}
-  let cardSuspect = selectRandom(suspectsArray);
-  let cardRoom = selectRandom(roomsArray);
-  let cardWeapon = selectRandom(weaponsArray);
 
-  let suspect = cardSuspect.lastName
-  let weapon = cardWeapon.name
-  let room = cardRoom.name
-
-  mystery.suspect = suspect
-  mystery.room = room
-  mystery.weapon = weapon
+  let suspect = selectRandom(suspectsArray);
+  let room = selectRandom(roomsArray);
+  let weapon = selectRandom(weaponsArray);
+  let mystery = {suspect, room, weapon}
 
   return mystery
 } 
@@ -121,13 +113,8 @@ function pickMystery() {
 // ITERATION 3
 
 function revealMystery(envelope) {
-  return `${envelope.suspect} killed Mr. Boddy using the ${envelope.weapon} in the ${envelope.room}`
+  return `${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`
  }
-
-let mystery = revealMystery(pickMystery())
-console.log(mystery)
-
-
 
 
 
